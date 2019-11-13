@@ -84,12 +84,6 @@ export class List<T> implements Iterable<T> {
   }
 
   toArray(): T[] {
-    const values: T[] = [];
-
-    for (const value of this.iterable) {
-      values.push(value);
-    }
-
-    return values;
+    return Array.from(this.iterable);
   }
 }
