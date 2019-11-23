@@ -97,4 +97,21 @@ describe("List", () => {
     ).toEqual([2, 4]);
     expect(finishedCheck).toHaveBeenCalled();
   });
+
+  test("should skip", () => {
+    const finishedCheck = jest.fn();
+
+    expect(new List(numbersUpTo4(finishedCheck)).skip(2).toArray()).toEqual([
+      3,
+      4
+    ]);
+    expect(finishedCheck).toHaveBeenCalled();
+  });
+
+  test("should return head", () => {
+    const finishedCheck = jest.fn();
+
+    expect(new List(numbersUpTo4(finishedCheck)).head()).toEqual(1);
+    expect(finishedCheck).toHaveBeenCalled();
+  });
 });

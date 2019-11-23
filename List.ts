@@ -28,6 +28,19 @@ function* take<T>(count: number, source: Iterable<T>): Generator<T> {
   }
 }
 
+function* skip<T>(count: number, source: Iterable<T>): Generator<T> {
+  let skipped = 0;
+
+  for (const value of source) {
+    if (skipped < count) {
+      skipped++;
+      continue;
+    }
+
+    yield value;
+  }
+}
+
 function* map<T, R>(
   project: (value: T) => R,
   source: Iterable<T>
@@ -71,8 +84,24 @@ export class List<T> implements Iterable<T> {
     return new List(array[Symbol.iterator]());
   }
 
+  head(): T | undefined {
+    for (const value of this.iterable) {
+      return value;
+    }
+
+    return undefined;
+  }
+
+  tail(): List<T> {
+    return this.skip(1);
+  }
+
   take(count: number): List<T> {
     return new List(take(count, this.iterable));
+  }
+
+  skip(count: number): List<T> {
+    return new List(skip(count, this.iterable));
   }
 
   map<R>(project: (value: T) => R): List<R> {

@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "build": "rm -rf dist && tsc && cp -rf package.json dist && cp -rf README.md dist",
+    "test": "jest"
+  },
   "devDependencies": {
     "@types/jest": "^24.0.21",
     "jest": "^24.9.0",
