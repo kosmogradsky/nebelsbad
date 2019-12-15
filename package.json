@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "rm -rf dist && tsc && cp -rf package.json dist && cp -rf README.md dist",
+    "build": "tsc && rm -rf dist && mkdir dist && rsync --recursive --exclude=*.spec.* src/ dist  && cp -rf package.json dist && cp -rf README.md dist",
     "test": "jest"
   },
   "devDependencies": {

@@ -114,4 +114,30 @@ describe("List", () => {
     expect(new List(numbersUpTo4(finishedCheck)).head()).toEqual(1);
     expect(finishedCheck).toHaveBeenCalled();
   });
+
+  test("should cons", () => {
+    const finishedCheck = jest.fn();
+
+    expect(new List(numbersUpTo4(finishedCheck)).prepend(5).toArray()).toEqual([
+      5,
+      1,
+      2,
+      3,
+      4
+    ]);
+    expect(finishedCheck).toHaveBeenCalled();
+  });
+
+  test("should append", () => {
+    const finishedCheck = jest.fn();
+
+    expect(new List(numbersUpTo4(finishedCheck)).append(5).toArray()).toEqual([
+      1,
+      2,
+      3,
+      4,
+      5
+    ]);
+    expect(finishedCheck).toHaveBeenCalled();
+  });
 });

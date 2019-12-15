@@ -61,6 +61,22 @@ function* filter<T>(
   }
 }
 
+function* prepend<T>(element: T, source: Iterable<T>): Generator<T> {
+  yield element;
+
+  for (const sourceElement of source) {
+    yield sourceElement;
+  }
+}
+
+function* append<T>(element: T, source: Iterable<T>): Generator<T> {
+  for (const sourceElement of source) {
+    yield sourceElement;
+  }
+
+  yield element;
+}
+
 export class List<T> implements Iterable<T> {
   constructor(private readonly iterable: Iterable<T>) {}
 
@@ -114,5 +130,13 @@ export class List<T> implements Iterable<T> {
 
   toArray(): T[] {
     return Array.from(this.iterable);
+  }
+
+  prepend(element: T) {
+    return new List(prepend(element, this.iterable));
+  }
+
+  append(element: T) {
+    return new List(append(element, this.iterable));
   }
 }

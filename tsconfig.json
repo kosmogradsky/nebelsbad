@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
+    "noEmit": true,
     "moduleResolution": "node",
     "outDir": "dist",
     "target": "es2019",
     "strict": true
   },
-  "exclude": ["**/*.spec.ts"]
+  "exclude": ["**/*.spec.ts", "dist"]
 }
